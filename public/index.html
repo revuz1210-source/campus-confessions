@@ -3,47 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Campus Confessions</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Love Confessions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: #f5f5f5;
-            color: #0f1419;
+            font-family: 'Playfair Display', 'Dancing Script', serif;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(138, 43, 226, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(30, 144, 255, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(147, 112, 219, 0.2) 0%, transparent 50%),
+                linear-gradient(135deg, #e6e6fa 0%, #d8bfd8 25%, #dda0dd 50%, #d8bfd8 75%, #e6e6fa 100%);
+            background-attachment: fixed;
+            color: #4b0082;
             min-height: 100vh;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y="50" font-size="80" fill="rgba(138,43,226,0.05)" font-family="serif">✦</text></svg>'),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y="50" font-size="60" fill="rgba(30,144,255,0.05)" font-family="serif">❋</text></svg>');
+            background-size: 150px 150px, 120px 120px;
+            background-position: 0 0, 75px 75px;
+            pointer-events: none;
         }
 
         /* ── Layout ─────────────────────────────────── */
         .timeline {
+            position: relative;
+            z-index: 2;
             max-width: 600px;
             margin: 0 auto;
-            background: #fff;
+            background: linear-gradient(135deg, #faf0ff 0%, #f8f0ff 100%);
             min-height: 100vh;
-            border-left: 1px solid #eff3f4;
-            border-right: 1px solid #eff3f4;
+            border-left: 3px solid #9370db;
+            border-right: 3px solid #9370db;
+            box-shadow: 
+                0 0 40px rgba(138, 43, 226, 0.2),
+                inset 0 0 30px rgba(230, 230, 250, 0.5);
+            position: relative;
+        }
+
+        .timeline::before, .timeline::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y="50" font-size="40" fill="%239370db" font-family="serif">�</text></svg>') no-repeat center;
+            background-size: contain;
+            opacity: 0.3;
+        }
+
+        .timeline::before {
+            top: 20px;
+            left: -50px;
+        }
+
+        .timeline::after {
+            top: 20px;
+            right: -50px;
         }
 
         /* ── Header ─────────────────────────────────── */
         .top-bar {
             position: sticky;
             top: 0;
-            background: rgba(255,255,255,0.85);
+            background: linear-gradient(135deg, #9370db 0%, #6a5acd 100%);
             backdrop-filter: blur(12px);
             z-index: 50;
-            border-bottom: 1px solid #eff3f4;
+            border-bottom: 3px solid #8a2be2;
+            box-shadow: 0 4px 20px rgba(138, 43, 226, 0.3);
         }
         .top-bar-inner {
             padding: 12px 16px;
         }
         .top-bar h1 {
-            font-size: 1.25em;
+            font-size: 1.5em;
             font-weight: 700;
+            color: #faf0ff;
+            text-shadow: 2px 2px 4px rgba(138, 43, 226, 0.5);
+            font-family: 'Great Vibes', 'Dancing Script', cursive;
         }
         .top-bar .subtitle {
             font-size: 0.8em;
-            color: #536472;
+            color: #f0f0ff;
             font-weight: 400;
         }
 
@@ -76,7 +127,7 @@
             transform: translateX(-50%);
             width: 56px;
             height: 4px;
-            background: #e0446d;
+            background: #8a2be2;
             border-radius: 2px;
         }
 
@@ -99,19 +150,29 @@
             font-weight: 700;
             color: #fff;
         }
-        .avatar.compose-avatar { background: #e0446d; }
+        .avatar.compose-avatar { background: linear-gradient(135deg, #9370db, #8a2be2); }
 
         .compose-body { flex: 1; min-width: 0; }
         .compose textarea {
             width: 100%;
-            border: none;
+            border: 2px solid #dda0dd;
             outline: none;
-            font-family: inherit;
-            font-size: 1.15em;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.3em;
             resize: none;
             min-height: 52px;
-            color: #0f1419;
+            color: #4b0082;
             line-height: 1.4;
+            background: rgba(250, 240, 255, 0.9);
+            border-radius: 15px;
+            padding: 15px;
+            transition: all 0.3s;
+            font-style: italic;
+        }
+
+        .compose textarea:focus {
+            border-color: #8a2be2;
+            box-shadow: 0 0 10px rgba(138, 43, 226, 0.2);
         }
         .compose textarea::placeholder { color: #9aa3ad; }
 
@@ -133,9 +194,9 @@
         }
         .mood-chip:hover { background: #f7f7f7; }
         .mood-chip.selected {
-            background: #fde8ee;
-            border-color: #e0446d;
-            color: #e0446d;
+            background: #e6e6fa;
+            border-color: #9370db;
+            color: #4b0082;
         }
 
         .compose-footer {
@@ -159,7 +220,7 @@
             stroke-width: 2.5;
         }
         .char-ring .bg { stroke: #eff3f4; }
-        .char-ring .fill { stroke: #e0446d; transition: stroke-dashoffset 0.2s, stroke 0.2s; }
+        .char-ring .fill { stroke: #9370db; transition: stroke-dashoffset 0.2s, stroke 0.2s; }
         .char-ring .fill.warn { stroke: #ffc107; }
         .char-ring .fill.limit { stroke: #f44336; }
         .char-text {
@@ -173,16 +234,23 @@
         }
 
         .post-btn {
-            padding: 8px 20px;
-            background: #e0446d;
-            color: #fff;
-            border: none;
-            border-radius: 20px;
+            padding: 10px 25px;
+            background: linear-gradient(135deg, #9370db, #8a2be2);
+            color: #faf0ff;
+            border: 2px solid #8a2be2;
+            border-radius: 25px;
             font-weight: 700;
-            font-size: 0.88em;
+            font-size: 1em;
             cursor: pointer;
-            transition: opacity 0.15s;
-            font-family: inherit;
+            transition: all 0.3s;
+            font-family: 'Dancing Script', cursive;
+            box-shadow: 0 4px 15px rgba(138, 43, 226, 0.4);
+            text-transform: capitalize;
+        }
+
+        .post-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(139, 69, 19, 0.4);
         }
         .post-btn:hover { opacity: 0.85; }
         .post-btn:disabled { opacity: 0.5; cursor: default; }
@@ -231,7 +299,7 @@
             margin-bottom: 4px;
             font-weight: 500;
         }
-        .m-love { background: #fde8ee; color: #e0446d; }
+        .m-love { background: #f0e6d2; color: #8b6f47; }
         .m-happy { background: #fff8e1; color: #f9a825; }
         .m-sad { background: #e3f2fd; color: #1976d2; }
         .m-angry { background: #fbe9e7; color: #d84315; }
@@ -239,10 +307,13 @@
         .m-excited { background: #e8f5e9; color: #2e7d32; }
 
         .post-text {
-            font-size: 0.95em;
-            line-height: 1.55;
+            font-size: 1.1em;
+            line-height: 1.6;
             word-wrap: break-word;
             white-space: pre-wrap;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: #4b0082;
         }
 
         /* Emoji reactions row (below text) */
@@ -267,8 +338,8 @@
             transition: all 0.15s;
             color: #536471;
         }
-        .emoji-btn:hover { background: #fde8ee; border-color: #e0446d; transform: scale(1.1); }
-        .emoji-btn.reacted { background: #fde8ee; border-color: #e0446d; }
+        .emoji-btn:hover { background: #e6e6fa; border-color: #9370db; transform: scale(1.1); }
+        .emoji-btn.reacted { background: #e6e6fa; border-color: #9370db; }
         .emoji-btn .e-count {
             font-size: 0.7em;
             font-weight: 600;
@@ -348,26 +419,30 @@
         }
         .reply-compose input {
             flex: 1;
-            border: 1px solid #eff3f4;
+            border: 2px solid #dda0dd;
             border-radius: 20px;
-            padding: 8px 14px;
-            font-size: 0.85em;
+            padding: 10px 16px;
+            font-size: 0.95em;
             outline: none;
-            font-family: inherit;
-            color: #0f1419;
+            font-family: 'Dancing Script', cursive;
+            color: #4b0082;
+            font-style: italic;
+            background: rgba(250, 240, 255, 0.9);
         }
-        .reply-compose input:focus { border-color: #e0446d; }
+        .reply-compose input:focus { border-color: #8a2be2; }
         .reply-compose input::placeholder { color: #9aa3ad; }
         .reply-compose button {
-            padding: 6px 16px;
-            background: #e0446d;
-            color: #fff;
-            border: none;
+            padding: 8px 20px;
+            background: linear-gradient(135deg, #9370db, #8a2be2);
+            color: #faf0ff;
+            border: 2px solid #8a2be2;
             border-radius: 20px;
             font-weight: 700;
-            font-size: 0.8em;
+            font-size: 0.9em;
             cursor: pointer;
-            font-family: inherit;
+            font-family: 'Dancing Script', cursive;
+            box-shadow: 0 3px 12px rgba(138, 43, 226, 0.3);
+            text-transform: capitalize;
         }
         .reply-compose button:hover { opacity: 0.85; }
 
@@ -387,8 +462,8 @@
             bottom: 24px;
             left: 50%;
             transform: translateX(-50%) translateY(80px);
-            background: #e0446d;
-            color: #fff;
+            background: linear-gradient(135deg, #9370db, #8a2be2);
+            color: #faf0ff;
             padding: 10px 22px;
             border-radius: 8px;
             font-size: 0.88em;
@@ -396,6 +471,7 @@
             opacity: 0;
             transition: all 0.25s ease;
             z-index: 100;
+            box-shadow: 0 4px 15px rgba(138, 43, 226, 0.4);
         }
         .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
@@ -403,19 +479,202 @@
             from { opacity: 0; }
             to { opacity: 1; }
         }
+
+        /* ── Vintage Anime Characters ──────────────────── */
+        .floating-characters {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .anime-character {
+            position: absolute;
+            font-size: 45px;
+            animation: float-character 15s infinite;
+            opacity: 0.9;
+            filter: sepia(15%) hue-rotate(330deg);
+            z-index: 1;
+        }
+
+        .cartoon-couple {
+            position: absolute;
+            font-size: 50px;
+            animation: float-couple 18s infinite;
+            opacity: 0.85;
+            filter: sepia(10%) saturate(1.2);
+            z-index: 2;
+        }
+
+        .vintage-prop {
+            position: absolute;
+            font-size: 28px;
+            animation: float-prop 12s infinite;
+            opacity: 0.7;
+            filter: sepia(25%);
+            z-index: 0;
+        }
+
+        @keyframes float-character {
+            0% {
+                transform: translateY(100vh) translateX(0) rotate(0deg) scale(0.3);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.9;
+            }
+            25% {
+                transform: translateY(75vh) translateX(30px) rotate(20deg) scale(1.1);
+            }
+            50% {
+                transform: translateY(50vh) translateX(-20px) rotate(-15deg) scale(1.3);
+            }
+            75% {
+                transform: translateY(25vh) translateX(15px) rotate(10deg) scale(1.1);
+            }
+            90% {
+                opacity: 0.9;
+            }
+            100% {
+                transform: translateY(-10vh) translateX(0) rotate(0deg) scale(0.9);
+                opacity: 0;
+            }
+        }
+
+        @keyframes float-couple {
+            0% {
+                transform: translateY(100vh) translateX(0) rotate(0deg) scale(0.2);
+                opacity: 0;
+            }
+            15% {
+                opacity: 0.85;
+            }
+            30% {
+                transform: translateY(70vh) translateX(40px) rotate(25deg) scale(1.2);
+            }
+            60% {
+                transform: translateY(40vh) translateX(-30px) rotate(-20deg) scale(1.4);
+            }
+            85% {
+                opacity: 0.85;
+            }
+            100% {
+                transform: translateY(-10vh) translateX(0) rotate(0deg) scale(1);
+                opacity: 0;
+            }
+        }
+
+        @keyframes float-prop {
+            0% {
+                transform: translateY(100vh) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            15% {
+                opacity: 0.7;
+            }
+            30% {
+                transform: translateY(70vh) translateX(40px) rotate(60deg);
+            }
+            60% {
+                transform: translateY(40vh) translateX(-25px) rotate(120deg);
+            }
+            85% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-10vh) translateX(0) rotate(180deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes sway {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(30px); }
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #ff69b4;
+            border-radius: 50%;
+            animation: sparkle 3s infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+
+        /* Enhanced anime-style elements */
+        .timeline {
+            position: relative;
+            z-index: 2;
+        }
+
+        .top-bar h1 {
+            text-shadow: 2px 2px 4px rgba(139, 69, 19, 0.3);
+            animation: vintage-glow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes vintage-glow {
+            from { text-shadow: 2px 2px 4px rgba(138, 43, 226, 0.3); }
+            to { text-shadow: 2px 2px 8px rgba(147, 112, 219, 0.6), 0 0 10px rgba(138, 43, 226, 0.4); }
+        }
+
+        .post-btn {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .post-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .post-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .mood-chip {
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .mood-chip:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 4px 8px rgba(147, 112, 219, 0.3);
+        }
     </style>
 </head>
 <body>
+
+<!-- Vintage Anime Characters -->
+<div class="floating-characters" id="floatingCharacters"></div>
 
 <div class="timeline">
     <!-- Top Bar -->
     <div class="top-bar">
         <div class="top-bar-inner">
-            <h1>Campus Confessions <span class="subtitle" id="count"></span></h1>
+            <h1>� Love Confessions 💕 <span class="subtitle" id="count"></span></h1>
         </div>
         <div class="tabs">
-            <button class="tab active" onclick="switchTab('recent', this)">For You</button>
-            <button class="tab" onclick="switchTab('top', this)">Trending</button>
+            <button class="tab active" onclick="switchTab('recent', this)">Love Stories</button>
+            <button class="tab" onclick="switchTab('top', this)">Romantic Tales</button>
         </div>
     </div>
 
@@ -423,14 +682,14 @@
     <div class="compose">
         <div class="avatar compose-avatar">?</div>
         <div class="compose-body">
-            <textarea id="input" placeholder="What's happening on campus?" maxlength="280" rows="2"></textarea>
+            <textarea id="input" placeholder="Share your heart's deepest feelings..." maxlength="280" rows="2"></textarea>
             <div class="compose-moods" id="moods">
-                <span class="mood-chip" data-mood="love" onclick="pickMood(this)">&#10084;&#65039; love</span>
-                <span class="mood-chip" data-mood="happy" onclick="pickMood(this)">&#128522; happy</span>
-                <span class="mood-chip" data-mood="sad" onclick="pickMood(this)">&#128546; sad</span>
-                <span class="mood-chip" data-mood="angry" onclick="pickMood(this)">&#128545; angry</span>
-                <span class="mood-chip" data-mood="anxious" onclick="pickMood(this)">&#128560; anxious</span>
-                <span class="mood-chip" data-mood="excited" onclick="pickMood(this)">&#128293; excited</span>
+                <span class="mood-chip" data-mood="love" onclick="pickMood(this)">💕 love</span>
+                <span class="mood-chip" data-mood="happy" onclick="pickMood(this)">😊 happy</span>
+                <span class="mood-chip" data-mood="dreamy" onclick="pickMood(this)">😊 dreamy</span>
+                <span class="mood-chip" data-mood="passionate" onclick="pickMood(this)">🔥 passionate</span>
+                <span class="mood-chip" data-mood="shy" onclick="pickMood(this)">😳 shy</span>
+                <span class="mood-chip" data-mood="excited" onclick="pickMood(this)">✨ excited</span>
             </div>
             <div class="compose-footer">
                 <div class="compose-left">
@@ -481,12 +740,12 @@ function anonInitial(id) { return ANIMALS[id % ANIMALS.length][0]; }
 // ── Mood config ───────────────────────────────────
 
 const MOOD_MAP = {
-    love:    { label: '&#10084;&#65039; love',    cls: 'm-love' },
-    happy:   { label: '&#128522; happy',   cls: 'm-happy' },
-    sad:     { label: '&#128546; sad',     cls: 'm-sad' },
-    angry:   { label: '&#128545; angry',   cls: 'm-angry' },
-    anxious: { label: '&#128560; anxious', cls: 'm-anxious' },
-    excited: { label: '&#128293; excited', cls: 'm-excited' }
+    love:       { label: '💕 love',       cls: 'm-love' },
+    happy:      { label: '😊 happy',      cls: 'm-happy' },
+    dreamy:     { label: '😊 dreamy',     cls: 'm-happy' },
+    passionate: { label: '🔥 passionate', cls: 'm-excited' },
+    shy:        { label: '😳 shy',        cls: 'm-anxious' },
+    excited:    { label: '✨ excited',    cls: 'm-excited' }
 };
 
 const EMOJIS = [
@@ -794,8 +1053,97 @@ function toast(msg) {
     setTimeout(() => el.classList.remove('show'), 2200);
 }
 
+// ── Vintage Anime Characters Animation ─────────────
+
+function createVintageCharacter(type, emoji) {
+    const container = document.getElementById('floatingCharacters');
+    const element = document.createElement('div');
+    element.className = type;
+    element.textContent = emoji;
+    
+    // Random starting position
+    element.style.left = Math.random() * 100 + '%';
+    element.style.animationDelay = Math.random() * 12 + 's';
+    element.style.animationDuration = (10 + Math.random() * 6) + 's';
+    
+    container.appendChild(element);
+    
+    // Remove element after animation
+    setTimeout(() => {
+        element.remove();
+    }, 18000);
+}
+
+function startVintageAnimation() {
+    // Dreamy purple and blue characters
+    const characters = ['💜', '�', '💫', '✨', '🌟', '⭐', '🌌', '🎆', '💎', '🔮'];
+    
+    // Mystical couples (bigger & more prominent)
+    const cartoonCouples = ['👸🤴', '💜�', '🌟🌙', '✨💫', '🎆�', '��', '🔮🔮', '��'];
+    
+    // Magical props
+    const props = ['�', '💜', '🦋', '✨', '💫', '🌟', '⭐', '�', '💎', '�', '🌙', '⚡', '🌈'];
+    
+    // Create initial mystical couples (most prominent)
+    for (let i = 0; i < 4; i++) {
+        setTimeout(() => {
+            createVintageCharacter('cartoon-couple', cartoonCouples[Math.floor(Math.random() * cartoonCouples.length)]);
+        }, i * 3000);
+    }
+    
+    // Create initial dreamy characters
+    for (let i = 0; i < 5; i++) {
+        setTimeout(() => {
+            createVintageCharacter('anime-character', characters[Math.floor(Math.random() * characters.length)]);
+        }, i * 2000);
+    }
+    
+    // Create initial magical props
+    for (let i = 0; i < 6; i++) {
+        setTimeout(() => {
+            createVintageCharacter('vintage-prop', props[Math.floor(Math.random() * props.length)]);
+        }, i * 1500);
+    }
+    
+    // Continue creating elements periodically
+    setInterval(() => {
+        // Mystical couples appear less frequently but are prominent
+        if (Math.random() > 0.7) {
+            createVintageCharacter('cartoon-couple', cartoonCouples[Math.floor(Math.random() * cartoonCouples.length)]);
+        }
+        // Dreamy characters appear regularly
+        if (Math.random() > 0.4) {
+            createVintageCharacter('anime-character', characters[Math.floor(Math.random() * characters.length)]);
+        }
+        // Magical props appear most frequently
+        if (Math.random() > 0.2) {
+            createVintageCharacter('vintage-prop', props[Math.floor(Math.random() * props.length)]);
+        }
+    }, 3000);
+}
+
+// Create vintage sparkles
+function createVintageSparkle() {
+    const container = document.getElementById('floatingCharacters');
+    const sparkle = document.createElement('div');
+    sparkle.className = 'sparkle';
+    sparkle.style.left = Math.random() * 100 + '%';
+    sparkle.style.top = Math.random() * 100 + '%';
+    sparkle.style.background = '#d4af37';
+    sparkle.style.animationDelay = Math.random() * 3 + 's';
+    
+    container.appendChild(sparkle);
+    
+    setTimeout(() => {
+        sparkle.remove();
+    }, 3000);
+}
+
+setInterval(createVintageSparkle, 600);
+
 // ── Init ──────────────────────────────────────────
 loadPosts();
+startVintageAnimation();
 </script>
 </body>
 </html>
